@@ -38,7 +38,7 @@ function solution4(x) {
 }
 
 //최대공약수와 최소공배수
-function solution(n, m) {
+function solution4(n, m) {
   let answer = [];
   let min = n > m ? m : n;
   let max = n > m ? n : m;
@@ -67,9 +67,51 @@ function lcm(m, n) {
   return (m * n) / gcd(m, n);
 }
 
-function solutin(m, n) {
+function solution5(m, n) {
   return [gcd(m, n), lcm(m, n)];
 }
 
-let a = solutin(44, 3);
+//제일 작은 수 제거하기
+function solution6(arr) {
+  let min = Math.min(...arr);
+  arr.splice(arr.indexOf(min), 1);
+  return arr.length ? arr : [-1];
+}
+
+//최소직사각형
+function solution7(sizes) {
+  // 가로 세로 길이 중 큰 값을 w / 작은 값을 h
+  let w = 0;
+  let h = 0;
+
+  // 가로 세로 정렬 후 큰 값으 할당
+  for (let i = 0; i < sizes.length; i++) {
+    let [first, second] = sizes[i].sort();
+
+    if (first > w) w = first;
+    if (second > h) h = second;
+  }
+
+  return w * h;
+}
+
+//이상한 문자 만들기
+function solution(s) {
+  // 공백으로 split
+  let str = s.split(' ');
+
+  // 홀수번째 => 소문자, 짝수 => 대문자
+  let strArr = str.map((v) => v.split(''));
+
+  let changeStr = strArr.map((v) =>
+    v.map((str, i) => (i % 2 ? str.toLowerCase() : str.toUpperCase())).join('')
+  );
+
+  return changeStr.join(' ');
+}
+
+//최소직사각형
+let value = 'try hello world';
+
+let a = solution(value);
 console.log(a);
